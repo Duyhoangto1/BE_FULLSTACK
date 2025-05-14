@@ -1,23 +1,17 @@
 const express = require('express');
+const { createUser, login } = require('../controllers/user.controller');
+
 
 const routerAPI = express.Router();
 
-// const { getUsersAPI, postCreateUserAPI,
-//     putUpdateUserAPI, deleteUserAPI
-
-// } = require('../controllers/apiController')
-
-
-// routerAPI.get('/users', getUsersAPI);
-// routerAPI.post('/users', postCreateUserAPI);
-// routerAPI.put('/users', putUpdateUserAPI);
-// routerAPI.delete('/users', deleteUserAPI);
+// Basic GET route to test API
 routerAPI.get('/', (req, res) => {
     return res.status(200).json({
         message: 'Hello world from API'
     })
-}
-)
+});
 
-
-module.exports = routerAPI; //export default
+// POST route to create user (without /v1/api since it's already defined in the main app file)
+routerAPI.post('/register', createUser);
+routerAPI.post('/login', login);
+module.exports = routerAPI;
